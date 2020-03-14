@@ -4,6 +4,7 @@
   "description": "WeChat mini-program implemented by Remax.js",
   "scripts": {
     "start": "remax build -t wechat -w",
+    "prestart": "rimraf dist",
     "build": "NODE_ENV=production remax build -t wechat",
     "prebuild": "rimraf dist"
   },
