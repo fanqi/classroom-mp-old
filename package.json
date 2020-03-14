@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/hurui/classroom-mp#readme",
   "dependencies": {
+    "mp-loading": "^1.0.1",
     "react": "^16.13.0",
     "remax": "^1.15.1",
     "weui-miniprogram": "^0.2.2"
