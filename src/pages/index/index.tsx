@@ -32,11 +32,6 @@ const Index = () => {
   // hooks
   const [input, setInput] = useState('')
 
-  // 处理添加选项事件
-  const handleAdd = useCallback(type => {
-    actionDispatch({ type })
-  }, [])
-
   // 处理创建或进入课堂
   const handleAction = useCallback(
     event => {
@@ -56,7 +51,7 @@ const Index = () => {
   return (
     <React.Fragment>
       <EmptyCourseList />
-      <AddButton onClick={type => handleAdd(type)} />
+      <AddButton onClick={type => actionDispatch({ type })} />
       <Dialog
         title={actionState.title}
         show={actionState.show}
