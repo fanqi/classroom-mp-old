@@ -1,0 +1,32 @@
+{
+  "name": "classroom-mp",
+  "version": "0.0.1",
+  "description": "WeChat mini-program implemented by Remax.js",
+  "scripts": {
+    "start": "remax build -t wechat -w",
+    "build": "NODE_ENV=production remax build -t wechat",
+    "prebuild": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hurui/classroom-mp.git"
+  },
+  "private": true,
+  "keywords": [],
+  "author": "hurui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hurui/classroom-mp/issues"
+  },
+  "homepage": "https://github.com/hurui/classroom-mp#readme",
+  "dependencies": {
+    "react": "^16.13.0",
+    "remax": "^1.15.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.23",
+    "remax-cli": "^1.15.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
+  }
+}
