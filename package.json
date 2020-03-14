@@ -21,7 +21,8 @@
   "homepage": "https://github.com/hurui/classroom-mp#readme",
   "dependencies": {
     "react": "^16.13.0",
-    "remax": "^1.15.1"
+    "remax": "^1.15.1",
+    "weui-miniprogram": "^0.2.2"
   },
   "devDependencies": {
     "@types/react": "^16.9.23",
