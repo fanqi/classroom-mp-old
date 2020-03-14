@@ -4,3 +4,12 @@ page {
   align-items: center;
   background-color: #f8f8f8;
 }
+
+input {
+  background-color: #ffffff;
+  border: solid 1px #e4e4e4;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 25px;
+  height: 100px;
+}
