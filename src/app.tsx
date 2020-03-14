@@ -1,6 +1,13 @@
 import * as React from 'react'
 import './app.css'
-import { cloud, useAppLaunch, useAppShow, redirectTo } from 'remax/wechat'
+import {
+  cloud,
+  useAppLaunch,
+  useAppShow,
+  redirectTo,
+  getStorageSync,
+  setStorageSync,
+} from 'remax/wechat'
 import { getUserInfo } from './functions/user.function'
 import { UserNotExistException } from './exceptions/user.exception'
 
@@ -10,8 +17,10 @@ const App: React.FC = props => {
 
   // 读取用户信息，如果用户不存在则跳转至 guide 页面
   useAppShow(async () => {
+    if (getStorageSync('user')) return
     try {
-      await getUserInfo()
+      const user = await getUserInfo()
+      setStorageSync('user', user)
     } catch (e) {
       if (e instanceof UserNotExistException) {
         redirectTo({ url: '/pages/guide/guide' })
