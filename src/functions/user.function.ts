@@ -9,3 +9,13 @@ export async function getUserInfo(): Promise<User> | never {
   if (!user) throw new UserNotExistException()
   return user
 }
+
+export async function createUser(name: string, avatar: string): Promise<void> {
+  const users = cloud.database().collection('users')
+  await users.add({
+    data: {
+      name,
+      avatar,
+    },
+  })
+}

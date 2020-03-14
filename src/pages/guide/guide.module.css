@@ -1,0 +1,9 @@
+.set-name-title {
+  color: #333;
+  font-weight: bold;
+}
+
+.spacer {
+  flex-grow: 1;
+  flex-basis: 40px;
+}
