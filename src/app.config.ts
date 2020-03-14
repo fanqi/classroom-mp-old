@@ -1,7 +1,7 @@
 import { AppConfig } from 'remax/wechat'
 
 const config: AppConfig = {
-  pages: ['pages/index/index'],
+  pages: ['pages/index/index', 'pages/guide/guide'],
   window: {
     navigationBarTextStyle: 'black',
     navigationBarBackgroundColor: '#fff',
