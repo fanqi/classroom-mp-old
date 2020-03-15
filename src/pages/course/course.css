@@ -1,0 +1,26 @@
+.tab-container {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+.weui-tabs-swiper {
+  box-sizing: border-box;
+  padding-top: 40px;
+  width: 100%;
+  background-color: #fff;
+  min-height: calc(100vh - 100px);
+}
+
+.tab-bar-title__selected {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.tab {
+  padding: 20px;
+}
+
+.tab-list {
+  border-top: solid 1px #f0f0f0;
+  border-bottom: solid 1px #f0f0f0;
+}

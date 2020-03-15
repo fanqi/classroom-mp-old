@@ -2,6 +2,17 @@ import { cloud, getStorageSync } from 'remax/wechat'
 import Course from '../models/course.model'
 import User from '../models/user.model'
 
+export async function getCourseInfo(
+  courseId: string | number
+): Promise<Course> {
+  let id: number
+  if (typeof courseId === 'string') id = parseInt(courseId)
+  if (typeof courseId === 'number') id = courseId
+  const courses = cloud.database().collection('courses')
+  const courseData = await courses.doc(id).get()
+  return courseData.data as Course
+}
+
 export async function getMyCourseList(): Promise<Course[]> {
   const courses = cloud.database().collection('courses')
   const coursesData = (await courses.get()).data as Course[]

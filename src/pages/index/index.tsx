@@ -1,11 +1,11 @@
 import React, { useCallback, useReducer, useState, useMemo } from 'react'
 import {
-  View,
   Input,
   useShow,
   showNavigationBarLoading,
   hideNavigationBarLoading,
   getStorageSync,
+  navigateTo,
 } from 'remax/wechat'
 import AddButton from '../../components/AddButton/AddButton'
 import Dialog from 'weui-miniprogram/miniprogram_dist/dialog/dialog'
@@ -40,13 +40,17 @@ const Index = () => {
   }, {})
 
   // hooks
+  const [loading, setLoading] = useState(false)
   const [input, setInput] = useState('')
   const [myCourseList, setMyCourseList] = useState<Course[]>([])
+  const [joinedCourseList, setJoinedCourseList] = useState<Course[]>([])
 
   // 进入首页时加载课程列表
   useShow(async () => {
+    setLoading(true)
     if (!getStorageSync('user')) return
     setMyCourseList(await getMyCourseList())
+    setLoading(false)
   })
 
   // 处理创建或进入课堂
@@ -70,14 +74,25 @@ const Index = () => {
   )
 
   const MyCourseList = useMemo(
-    () => myCourseList.map(x => <CourseListItem key={x._id} course={x} />),
+    () =>
+      myCourseList.map(x => (
+        <CourseListItem
+          onClick={courseId =>
+            navigateTo({ url: `/pages/course/course?id=${courseId}` })
+          }
+          key={x._id}
+          course={x}
+        />
+      )),
     [myCourseList]
   )
 
   return (
     <React.Fragment>
       {MyCourseList}
-      <EmptyCourseList />
+      {!loading && MyCourseList.length + joinedCourseList.length < 3 && (
+        <EmptyCourseList />
+      )}
       <AddButton onClick={type => actionDispatch({ type })} />
       <Dialog
         title={actionState.title}

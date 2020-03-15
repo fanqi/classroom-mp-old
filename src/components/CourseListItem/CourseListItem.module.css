@@ -9,6 +9,10 @@
   border: solid 1px #f0f0f0;
 }
 
+.course-container:active {
+  background-color: #ddd;
+}
+
 .avatar {
   height: 120px;
   width: 120px;
