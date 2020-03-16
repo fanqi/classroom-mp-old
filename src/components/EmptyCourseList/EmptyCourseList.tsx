@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Image } from 'remax/wechat'
 import styles from './EmptyCourseList.module.css'
+// @ts-ignore
 import EmptyBg from '../../assets/empty-bg.png'
 
 const EmptyCourseList = () => {
