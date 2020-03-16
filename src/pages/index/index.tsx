@@ -1,11 +1,11 @@
 import React, { useCallback, useReducer, useState, useMemo } from 'react'
 import {
   Input,
-  useShow,
   showNavigationBarLoading,
   hideNavigationBarLoading,
   getStorageSync,
   navigateTo,
+  useReady,
 } from 'remax/wechat'
 import FloatButton from '../../components/FloatButton/FloatButton'
 import Dialog from 'weui-miniprogram/miniprogram_dist/dialog/dialog'
@@ -53,7 +53,8 @@ const Index = () => {
   const [joinedCourseList, setJoinedCourseList] = useState<Course[]>([])
 
   // 进入首页时加载课程列表
-  useShow(async () => {
+  useReady(async () => {
+    console.log('show')
     setLoading(true)
     if (!getStorageSync('user')) return
     setMyCourseList(await getMyCourseList())
