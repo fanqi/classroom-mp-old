@@ -139,7 +139,7 @@ const Index = () => {
         <Input
           placeholder={actionState.tip}
           value={input}
-          type={actionState.type === 'create' ? 'text' : 'number'}
+          type={actionState.type === 'join' ? 'number' : 'text'}
           onInput={e => setInput(e.detail.value)}
         />
       </Dialog>
