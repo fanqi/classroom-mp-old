@@ -23,6 +23,7 @@ export async function getMyCourseList(): Promise<Course[]> {
 }
 
 export async function createCourse(name: String): Promise<void> {
+  if (!name) return
   const courses = cloud.database().collection('courses')
   let success = false
   let count = 5
