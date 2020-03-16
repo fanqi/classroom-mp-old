@@ -7,7 +7,7 @@ import {
   getStorageSync,
   navigateTo,
 } from 'remax/wechat'
-import AddButton from '../../components/AddButton/AddButton'
+import FloatButton from '../../components/FloatButton/FloatButton'
 import Dialog from 'weui-miniprogram/miniprogram_dist/dialog/dialog'
 import EmptyCourseList from '../../components/EmptyCourseList/EmptyCourseList'
 import CourseListItem from '../../components/CourseListItem/CourseListItem'
@@ -30,6 +30,13 @@ const Index = () => {
           type: 'join',
           title: '加入课堂',
           tip: '输入课堂邀请码',
+          show: true,
+        }
+      case 'changeName':
+        return {
+          type: 'changeName',
+          title: '修改姓名',
+          tip: '输入新的姓名',
           show: true,
         }
       case 'close':
@@ -67,6 +74,9 @@ const Index = () => {
       if (actionState.type === 'join') {
         console.log('加入课堂')
       }
+      if (actionState.type === 'changeName') {
+        console.log('修改姓名')
+      }
       setInput('')
       hideNavigationBarLoading()
     },
@@ -95,7 +105,23 @@ const Index = () => {
           showImg={MyCourseList.length + joinedCourseList.length < 3}
         />
       )}
-      <AddButton onClick={type => actionDispatch({ type })} />
+      <FloatButton
+        right="40px"
+        bottom="140px"
+        icon="add"
+        types={[
+          { text: '创建课堂', value: 'create' },
+          { text: '加入课堂', value: 'join' },
+        ]}
+        onClick={type => actionDispatch({ type })}
+      />
+      <FloatButton
+        right="40px"
+        bottom="60px"
+        icon="setting"
+        types={[{ text: '修改姓名', value: 'changeName' }]}
+        onClick={type => actionDispatch({ type })}
+      />
       <Dialog
         title={actionState.title}
         show={actionState.show}

@@ -3,13 +3,22 @@ import { View } from 'remax/wechat'
 import Icon from 'weui-miniprogram/miniprogram_dist/icon/icon'
 import Actionsheet from 'weui-miniprogram/miniprogram_dist/actionsheet/actionsheet'
 
-import styles from './Addbutton.module.css'
+import styles from './FloatButton.module.css'
+
+interface ActionType {
+  text: string
+  value: string
+}
 
 interface AddButtonProps {
   onClick?: (type: string) => void
+  types: ActionType[]
+  right: string
+  bottom: string
+  icon: string
 }
 
-const AddButton = ({ onClick }: AddButtonProps) => {
+const AddButton = ({ types, onClick, right, bottom, icon }: AddButtonProps) => {
   // hooks
   const [showAction, setShowAction] = useState(false)
 
@@ -26,16 +35,14 @@ const AddButton = ({ onClick }: AddButtonProps) => {
     <React.Fragment>
       <View
         className={styles['add-button']}
+        style={{ right, bottom }}
         onClick={() => setShowAction(true)}
       >
-        <Icon icon="add" size={35} type="field"></Icon>
+        <Icon icon={icon} size={35}></Icon>
       </View>
       <Actionsheet
         show={showAction}
-        actions={[
-          { text: '创建课堂', value: 'create' },
-          { text: '加入课堂', value: 'join' },
-        ]}
+        actions={types}
         bindclose={() => setShowAction(false)}
         bindactiontap={event => handleAction(event)}
       />
