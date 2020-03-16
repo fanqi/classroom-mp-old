@@ -4,10 +4,14 @@ import styles from './EmptyCourseList.module.css'
 // @ts-ignore
 import EmptyBg from '../../assets/empty-bg.png'
 
-const EmptyCourseList = () => {
+interface EmptyCourseListProps {
+  showImg?: boolean
+}
+
+const EmptyCourseList = ({ showImg }: EmptyCourseListProps) => {
   return (
     <View className={styles['course-empty']}>
-      <Image src={EmptyBg} />
+      {showImg && <Image src={EmptyBg} />}
       <Text>点击右下角创建或加入课堂</Text>
     </View>
   )

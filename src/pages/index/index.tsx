@@ -90,8 +90,10 @@ const Index = () => {
   return (
     <React.Fragment>
       {MyCourseList}
-      {!loading && MyCourseList.length + joinedCourseList.length < 3 && (
-        <EmptyCourseList />
+      {!loading && (
+        <EmptyCourseList
+          showImg={MyCourseList.length + joinedCourseList.length < 3}
+        />
       )}
       <AddButton onClick={type => actionDispatch({ type })} />
       <Dialog
