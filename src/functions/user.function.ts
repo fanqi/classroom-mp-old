@@ -1,4 +1,4 @@
-import { cloud } from 'remax/wechat'
+import { cloud, getStorageSync, setStorageSync } from 'remax/wechat'
 import { UserNotExistException } from '../exceptions/user.exception'
 import User from '../models/user.model'
 
@@ -18,4 +18,12 @@ export async function createUser(name: string, avatar: string): Promise<void> {
       avatar,
     },
   })
+}
+
+export async function setName(name: string): Promise<void> {
+  if (!name) return
+  const users = cloud.database().collection('users')
+  const { _id: id } = getStorageSync('user')
+  await users.doc(id).update({ data: { name } })
+  setStorageSync('user', await getUserInfo())
 }

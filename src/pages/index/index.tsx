@@ -13,6 +13,7 @@ import EmptyCourseList from '../../components/EmptyCourseList/EmptyCourseList'
 import CourseListItem from '../../components/CourseListItem/CourseListItem'
 import { createCourse, getMyCourseList } from '../../functions/course.function'
 import Course from '../../models/course.model'
+import { setName } from '../../functions/user.function'
 
 const Index = () => {
   // reducer
@@ -54,11 +55,12 @@ const Index = () => {
 
   // 进入首页时加载课程列表
   useReady(async () => {
-    console.log('show')
     setLoading(true)
+    showNavigationBarLoading()
     if (!getStorageSync('user')) return
     setMyCourseList(await getMyCourseList())
     setLoading(false)
+    hideNavigationBarLoading()
   })
 
   // 处理创建或进入课堂
@@ -76,7 +78,8 @@ const Index = () => {
         console.log('加入课堂')
       }
       if (actionState.type === 'changeName') {
-        console.log('修改姓名')
+        await setName(input)
+        setMyCourseList(await getMyCourseList())
       }
       setInput('')
       hideNavigationBarLoading()
