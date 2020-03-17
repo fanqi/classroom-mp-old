@@ -42,3 +42,8 @@ export async function createCourse(name: String): Promise<void> {
     } catch (error) {}
   }
 }
+
+export async function deleteCourse(id: number): Promise<void> {
+  const courses = cloud.database().collection('courses')
+  await courses.doc(id).remove()
+}

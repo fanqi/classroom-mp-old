@@ -5,7 +5,7 @@ import {
   hideNavigationBarLoading,
   getStorageSync,
   navigateTo,
-  useReady,
+  useShow,
 } from 'remax/wechat'
 import FloatButton from '../../components/FloatButton/FloatButton'
 import Dialog from 'weui-miniprogram/miniprogram_dist/dialog/dialog'
@@ -54,7 +54,7 @@ const Index = () => {
   const [joinedCourseList, setJoinedCourseList] = useState<Course[]>([])
 
   // 进入首页时加载课程列表
-  useReady(async () => {
+  useShow(async () => {
     setLoading(true)
     showNavigationBarLoading()
     if (!getStorageSync('user')) return
@@ -66,9 +66,9 @@ const Index = () => {
   // 处理创建或进入课堂
   const handleAction = useCallback(
     async event => {
-      showNavigationBarLoading()
       actionDispatch({ tpye: 'close' })
       if (event.detail.index === 0) return
+      showNavigationBarLoading()
       if (actionState.type === 'create') {
         await createCourse(input)
         setMyCourseList(await getMyCourseList())
@@ -104,10 +104,8 @@ const Index = () => {
   return (
     <React.Fragment>
       {MyCourseList}
-      {!loading && (
-        <EmptyCourseList
-          showImg={MyCourseList.length + joinedCourseList.length < 3}
-        />
+      {MyCourseList.length + joinedCourseList.length === 0 && (
+        <EmptyCourseList />
       )}
       <FloatButton
         right="40px"
