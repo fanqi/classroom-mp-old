@@ -39,11 +39,18 @@ export async function createCourse(name: String): Promise<void> {
         },
       })
       success = true
-    } catch (error) {}
+    } catch (error) { }
   }
 }
 
 export async function deleteCourse(id: number): Promise<void> {
   const courses = cloud.database().collection('courses')
   await courses.doc(id).remove()
+}
+
+
+export async function setCourseName(id: number, name: string): Promise<void> {
+  if (!name) return
+  const courses = cloud.database().collection('courses')
+  await courses.doc(id).update({ data: { name } })
 }

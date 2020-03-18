@@ -10,7 +10,11 @@ import {
   useShow,
   navigateBack,
 } from 'remax/wechat'
-import { getCourseInfo, deleteCourse } from '../../functions/course.function'
+import {
+  getCourseInfo,
+  deleteCourse,
+  setCourseName,
+} from '../../functions/course.function'
 import FloatButton from '../../components/FloatButton/FloatButton'
 import Tabs from '../../lib/tabs/index'
 import Slideview from 'weui-miniprogram/miniprogram_dist/slideview/slideview'
@@ -66,6 +70,10 @@ const Course = () => {
       if (actionState.type === 'delete') {
         await deleteCourse(parseInt(id))
         navigateBack()
+      }
+      if (actionState.type === 'changeName') {
+        await setCourseName(parseInt(id), input)
+        setNavigationBarTitle({ title: input })
       }
       setInput('')
       hideNavigationBarLoading()
