@@ -6,7 +6,8 @@
     "start": "remax build -t wechat -w",
     "prestart": "rimraf dist",
     "build": "NODE_ENV=production remax build -t wechat",
-    "prebuild": "rimraf dist"
+    "prebuild": "rimraf dist",
+    "format": "prettier --write src/**/*.{t,j}s[x]"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,8 @@
     "weui-miniprogram": "^0.2.2"
   },
   "devDependencies": {
-    "@types/react": "^16.9.23",
+    "@types/react": "^16.9.25",
+    "prettier": "1.19.1",
     "remax-cli": "^1.17.2",
     "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
