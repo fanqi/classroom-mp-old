@@ -28,9 +28,9 @@ input {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .course-card text:last-child {
-  color: #999;
+  color: #004d61;
 }
